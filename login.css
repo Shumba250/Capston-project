@@ -1,0 +1,100 @@
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: #f2edd7;
+}
+
+.main-frame {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 700px;
+	padding: 100px;
+	transform: translate(-50%, -50%);
+	background: #e3dcbd;
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
+}
+
+.main-frame h2 {
+	margin: 0 0 30px;
+	padding: 0;
+	color: #755139;
+	text-align: center;
+	font-family: "Raleway";
+	font-weight: 700;
+	font-size: 50px;
+	line-height: 153.4%;
+}
+
+.main-frame .login-frames {
+	position: relative;
+	padding-bottom: 20px;
+}
+
+.main-frame .login-frames input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #755139;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #755139;
+	outline: none;
+	background: transparent;
+}
+.main-frame .login-frames label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #755139;
+	pointer-events: none;
+	transition: 0.5s;
+	font-family: "Raleway";
+	font-size: 20px;
+}
+
+.main-frame .login-frames input:focus ~ label,
+.main-frame .login-frames input:valid ~ label {
+	top: -20px;
+	left: 0;
+	color: black;
+	font-size: 12px;
+}
+.main-frame button {
+	height: 50px;
+	padding: 5px 10px;
+	min-width: 130px;
+	font-weight: bold;
+	cursor: pointer;
+	display: inline-block;
+	outline: none;
+	border-radius: 5px;
+	border: none;
+	background: #755139;
+	transition: all 0.3s ease;
+	position: absolute;
+	left: 270px;
+	margin-top: 20px;
+	box-shadow: 2px 2px 4px #c8d0e7, -1px -1px 3px #fff;
+	align-items: center;
+}
+
+.main-frame button:hover {
+	background: black;
+	color: #755139;
+	border-radius: 5px;
+}
+.main-frame button label {
+	color: white;
+	cursor: pointer;
+	font-size: 20px;
+	font-family: "Raleway";
+}
