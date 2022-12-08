@@ -77,6 +77,24 @@ textarea {
 	position: fixed;
 	left: 3%;
 	top: 1.5%;
+	background: #43bff0;
+	color: #fff;
+	border-radius: 7px;
+	font-weight: 400;
+	padding: 0.05em 0.02em 0.05em 0.02em;
+	letter-spacing: 0.05em;
+	display: inline-block;
+	vertical-align: middle;
+}
+#home-login {
+	background: #ff4486;
+	color: #fff;
+	border-radius: 10px;
+	font-weight: 400;
+	padding: 0.01em 0.01em 0.01em 0.01em;
+	letter-spacing: 0.05em;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 /* my previous hamberger css started here */
