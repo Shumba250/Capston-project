@@ -1,3 +1,4 @@
+/*HAPPY CODING*/
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,600italic,700");
 @import url("fontawesome-all.min.css");
 
@@ -2614,7 +2615,7 @@ body > article {
 		top: 0;
 		width: 275px;
 		z-index: 10002;
-		background: #fff;
+		background: #f2edd7;
 		box-shadow: inset -3px 0px 0px 0px #dfdfdf;
 		padding: 0 23px 0 20px;
 	}
@@ -2658,7 +2659,7 @@ body > article {
 	}
 
 	#navPanel .depth-0 {
-		color: #444;
+		color: #755139;
 		font-weight: 800;
 	}
 
