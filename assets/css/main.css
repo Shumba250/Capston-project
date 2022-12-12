@@ -262,6 +262,16 @@ footer {
 footer > p {
 	font-size: 1.25em;
 }
+.errorMessages {
+	color: red;
+	float: right;
+	display: none;
+}
+.notMessages {
+	color: #10bef1;
+	float: right;
+	display: none;
+}
 
 /* Container */
 
@@ -1716,7 +1726,6 @@ button,
 	outline: 0;
 	cursor: pointer;
 	border-radius: 50px;
-	text-shadow: -1px -1px 0.5px rgba(0, 0, 0, 0.5);
 	overflow: hidden;
 	box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.5),
 		inset 0px 2px 1px 0px rgba(255, 255, 255, 0.75);
@@ -1852,7 +1861,6 @@ ul.social li a:before {
 	text-align: center;
 	outline: 0;
 	overflow: hidden;
-	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
 	width: 48px;
 }
 

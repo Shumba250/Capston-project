@@ -8,7 +8,7 @@
 			content="width=device-width, initial-scale=1, user-scalable=no"
 		/>
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="images/icon.png">
+		<link rel="icon" href="images/icon.png" />
 	</head>
 	<body class="is-preload">
 		<!-- Top Navigation bar -->
@@ -21,9 +21,8 @@
 				<li><a href="#skills"> SKILLS</a></li>
 				<li><a href="#contact">CONTACT ME</a></li>
 				<li><a href="#blog">BLOG</a></li>
-				<li id="home-login"><a href="login.html" target="_blank">LOG IN</a></li>
+				<li id="home-login"><a href="login.html">LOG IN</a></li>
 			</ul>
-			</nav>
 		</nav>
 		<!-- Home page html-->
 		<article id="home" class="wrapper style1">
@@ -230,7 +229,11 @@
 							<a href="#" class="image featured"
 								><img src="images/blog1.jpg" alt=""
 							/></a>
-							<h3><a href="mainblog.html" target="_blank">mobile apps and development</a></h3>
+							<h3>
+								<a href="mainblog.html" target="_blank"
+									>mobile apps and development</a
+								>
+							</h3>
 							<p>
 								fylo website that puts all your file in one secure location,
 								accessible anywhere.
@@ -256,7 +259,9 @@
 							<a href="mainblog.html" class="image featured"
 								><img src="images/blog1.jpg" alt=""
 							/></a>
-							<h3><a href="mainblog.html" target="_blank">Web data analytics</a></h3>
+							<h3>
+								<a href="mainblog.html" target="_blank">Web data analytics</a>
+							</h3>
 							<p>
 								this was done using python in data science regarding the
 								population growth count in the organisation
@@ -264,7 +269,6 @@
 							<h4><a href="mainblog.html" target="_blank">Read more</a></h4>
 						</article>
 					</div>
-					
 				</div>
 			</div>
 		</article>
@@ -281,6 +285,9 @@
 							<div class="row">
 								<div class="col-6 col-12-small">
 									<input type="text" name="name" id="name" placeholder="Name" />
+									<small id="validName" class="errorMessages"
+										>name field can't be empty</small
+									>
 								</div>
 								<div class="col-6 col-12-small">
 									<input
@@ -289,6 +296,15 @@
 										id="email"
 										placeholder="Email"
 									/>
+									<small id="validEmail" class="errorMessages"
+										>email field can't be empty</small
+									>
+									<small id="emailValidityNot" class="errorMessages"
+										>invalid email</small
+									>
+									<small id="emailValidity" class="notMessages"
+										>valid email</small
+									>
 								</div>
 								<div class="col-12">
 									<input
@@ -297,17 +313,33 @@
 										id="subject"
 										placeholder="Subject"
 									/>
+									<small id="validSubject" class="errorMessages"
+										>subject field can't be empty</small
+									>
 								</div>
+
 								<div class="col-12">
 									<textarea
 										name="message"
 										id="message"
 										placeholder="Message"
 									></textarea>
+									<small id="validMessage" class="errorMessages"
+										>This field can't be empty</small
+									>
+									<small id="notBelowCharactes" class="errorMessages"
+										>Characters shouls atleast be 20 characters</small
+									>
 								</div>
 								<div class="col-12">
 									<ul class="actions">
-										<li><input type="submit" value="Send Message" /></li>
+										<li>
+											<input
+												onclick="return formValidation()"
+												type="submit"
+												value="Send Message"
+											/>
+										</li>
 										<li>
 											<input type="reset" value="Clear Form" class="alt" />
 										</li>
@@ -328,22 +360,34 @@
 								>
 							</li>
 							<li>
-								<a href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank"class="icon brands fa-facebook-f"
+								<a
+									href="https://web.facebook.com/?_rdc=1&_rdr"
+									target="_blank"
+									class="icon brands fa-facebook-f"
 									><span class="label">Facebook</span></a
 								>
 							</li>
 							<li>
-								<a href="www.linkedin.com/in/mudakikwa-aimable-aa3010220" target="_blank" class="icon brands fa-linkedin-in"
+								<a
+									href="www.linkedin.com/in/mudakikwa-aimable-aa3010220"
+									target="_blank"
+									class="icon brands fa-linkedin-in"
 									><span class="label">LinkedIn</span></a
 								>
 							</li>
 							<li>
-								<a href="https://myaccount.google.com/target="_blank"" target="_blank"class="icon brands fa-google-plus"
+								<a
+									href="https://myaccount.google.com/"
+									target="_blank"
+									class="icon brands fa-google-plus"
 									><span class="label">Google+</span></a
 								>
 							</li>
 							<li>
-								<a href="github/shumba250" target="_blank" class="icon brands fa-github"
+								<a
+									href="github/shumba250"
+									target="_blank"
+									class="icon brands fa-github"
 									><span class="label">Github</span></a
 								>
 							</li>
@@ -365,5 +409,7 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+		<script src="assets/js/validation.js"></script>
 	</body>
 </html>

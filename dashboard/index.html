@@ -205,6 +205,79 @@
 							</tbody>
 						</table>
 					</div>
+					<div id="bottomArticle" class="everything bodyarticle">
+						<div class="addArticleForm medium" style="display: none">
+							<header>
+								<h2>Add Article Form</h2>
+							</header>
+							<form onsubmit="return false">
+								<div class="addArticleForm">
+									<div class="nameplaceholder">
+										<input
+											id="name"
+											name="name"
+											type="text"
+											placeholder="Title"
+										/>
+
+										<small id="titleValueError" class="errorMessages"
+											>Please this field can not be empty!</small
+										>
+										<small id="titleValueMinError" class="errorMessages"
+											>Blog description should be at least 20 characters!</small
+										>
+									</div>
+									<div class="descriptionplaceholder">
+										<textarea
+											name="description"
+											id="description"
+											placeholder="description"
+										></textarea>
+
+										<small id="editorValueError" class="errorMessages"
+											>Please this field can not be empty!</small
+										>
+										<small id="editorValueMinError" class="errorMessages"
+											>Blog description should be at least 150
+											characters!</small
+										>
+									</div>
+									<div class="descriptionplaceholder">
+										<input
+											style="width: 100%; height: 40px"
+											type="file"
+											id="image"
+											name="image"
+										/>
+										<small id="uploadFileError" class="errorMessages"
+											>Please uplaod the image</small
+										>
+									</div>
+									<div class="descriptionplaceholder">
+										<ul class="actions">
+											<li>
+												<input
+													id="addArticleButton"
+													class="add"
+													type="submit"
+													value="Add article"
+												/>
+											</li>
+											<li>
+												<input
+													id="clear"
+													onclick="return hideForm()"
+													type="reset"
+													value="Clear Form"
+													class="alt"
+												/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -222,7 +295,14 @@
 							<li><a href="#messages">messages</a></li>
 							<li><a href="#comments">Comments</a></li>
 							<li><a href="#articles">Articles</a></li>
-							<li><a href="#">Add article</a></li>
+							<li>
+								<a
+									href="#bottomArticle"
+									onclick="return displayAddArticleForm();"
+									type="button"
+									>Add article</a
+								>
+							</li>
 							<li><a href="../login.html">Log out</a></li>
 						</ul>
 					</nav>
@@ -231,10 +311,23 @@
 		</div>
 
 		<!-- Scripts -->
+
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+		<script>
+			let editor;
+			ClassicEditor.create(document.querySelector("#description"))
+				.then((newEditor) => {
+					editor = newEditor;
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		</script>
+		<script src="assets/js/validations.js"></script>
 	</body>
 </html>

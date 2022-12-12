@@ -98,3 +98,21 @@ body {
 	font-size: 20px;
 	font-family: "Raleway";
 }
+.errorMessages {
+	color: red;
+	float: right;
+	display: none;
+}
+@media screen and (max-width: 768px) {
+	.main-frame {
+		width: 100%;
+	}
+}
+p {
+	position: relative;
+	bottom: 50px;
+}
+a {
+	cursor: pointer;
+	color: rgb(78, 138, 138);
+}
