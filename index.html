@@ -278,10 +278,11 @@
 			<div class="container medium">
 				<header>
 					<h2>Have me make stuff for you.</h2>
+					<!-- <div class="alert">Message sent</div> -->
 				</header>
 				<div class="row">
 					<div class="col-12">
-						<form method="post" action="#">
+						<form onsubmit="return false" id="contactForm">
 							<div class="row">
 								<div class="col-6 col-12-small">
 									<input type="text" name="name" id="name" placeholder="Name" />
@@ -404,12 +405,14 @@
 		</article>
 
 		<!-- this will help to assess javaScript files -->
+		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+		<script src="assets/js/validation.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.dropotron.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
-		<script src="assets/js/validation.js"></script>
 	</body>
 </html>

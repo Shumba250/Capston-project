@@ -12,28 +12,40 @@
 				<h2>Login Now</h2>
 				<form>
 					<div class="login-frames">
-						<input id="idloginFormEmail" type="text" name="" required="" />
+						<input
+							id="idloginFormEmail"
+							type="text"
+							name="idloginFormEmail"
+							required=""
+						/>
 						<label>Username</label>
+						<small id="loginFormEmail1" class="errorMessages"
+							>Email field can't be empty</small
+						>
 						<small id="loginFormEmail" class="errorMessages"
 							>you entered invalid email</small
 						>
 					</div>
 					<div class="login-frames">
-						<input id="Password" type="password" name="" required="" />
+						<input id="Password" type="password" name="Password" required="" />
 						<label>Password</label>
 						<small id="loginFormPassword" class="errorMessages"
 							>Password filled can't be empty</small
 						>
 					</div>
-					<div class="submit">
-						<button type="submit">
-							<a href="./dashboard/index.html"><label>log in</label></a>
+					<div>
+						<button onclick="return loginFormValidation()" type="submit">
+							<a href="./dashboard/index.html"><label>login</label></a>
 						</button>
 					</div>
-					<p>If your not the admin, please <a herf="">click here</a></p>
+					<p>
+						If your not the admin, please <a href="index.html">click here</a>
+					</p>
 				</form>
 			</div>
 		</main>
-		<!-- <script src="assets/js/validation.js"></script> -->
+		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+		<script src="assets/js/validation.js"></script>
 	</body>
 </html>

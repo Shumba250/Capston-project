@@ -223,9 +223,6 @@
 										<small id="titleValueError" class="errorMessages"
 											>Please this field can not be empty!</small
 										>
-										<small id="titleValueMinError" class="errorMessages"
-											>Blog description should be at least 20 characters!</small
-										>
 									</div>
 									<div class="descriptionplaceholder">
 										<textarea
@@ -238,8 +235,7 @@
 											>Please this field can not be empty!</small
 										>
 										<small id="editorValueMinError" class="errorMessages"
-											>Blog description should be at least 150
-											characters!</small
+											>Blog description should be at least 20 characters!</small
 										>
 									</div>
 									<div class="descriptionplaceholder">
@@ -311,7 +307,9 @@
 		</div>
 
 		<!-- Scripts -->
-
+		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+		<script src="assets/js/validations.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
@@ -328,6 +326,5 @@
 					console.error(error);
 				});
 		</script>
-		<script src="assets/js/validations.js"></script>
 	</body>
 </html>
