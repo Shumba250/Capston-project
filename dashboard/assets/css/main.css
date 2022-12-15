@@ -12,10 +12,6 @@
 }
 
 article,
-aside,
-details,
-figcaption,
-figure,
 footer,
 header,
 hgroup,
@@ -73,7 +69,18 @@ textarea {
 	-ms-appearance: none;
 	appearance: none;
 }
-
+/* .inner #banner {
+	display: none;
+} */
+.inner #articles {
+	display: none;
+}
+.inner #messages {
+	display: none;
+}
+.inner #comments {
+	display: none;
+}
 .errorMessages {
 	color: red;
 	float: right;
@@ -403,7 +410,6 @@ body.is-resizing *:after {
 	transition: none !important;
 }
 
-/* Type */
 body,
 input,
 select,
