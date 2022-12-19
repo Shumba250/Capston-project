@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="icon" href="images/icon.png" />
 	</head>
-	<body class="is-preload">
+	<body onload="showAllDatabase()" class="is-preload">
 		<!-- Wrapper -->
 		<div id="wrapper">
 			<!-- Main -->
@@ -29,17 +29,35 @@
 							</p>
 							<ul class="actions">
 								<li>
-									<a href="#" class="button big">check out all the articles </a>
+									<a
+										onclick="return showArticles()"
+										id="showArticles"
+										href="#"
+										class="button big"
+										>check out all the articles
+									</a>
 								</li>
 							</ul>
 						</div>
 					</section>
 					<!-- Section -->
-					<section>
-						<header class="major" id="articles">
+					<section id="articles">
+						<header class="major">
 							<h2>All the articles including recently added articles</h2>
 						</header>
-						<div class="posts">
+						<div id="addedArticle" class="posts">
+							<!-- <article>
+								<a href="#" class="image"
+									><img id="imageAdd" src="images/blog1.jpg" alt=""
+								/></a>
+								<h3 id="headingAdd"></h3>
+								<p id="pAdd"></p>
+								<ul class="actions">
+									<li><a href="../mainblog.htm" class="button">more</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
+								</ul>
+							</article>
 							<article>
 								<a href="#" class="image"
 									><img src="images/blog1.jpg" alt=""
@@ -47,23 +65,28 @@
 								<h3>mobile apps and development</h3>
 								<p>
 									fylo website that puts all your file in one secure location,
-									accessible anywhere.
+									accessible anywhere.accessible population growth count in the
+									organisation
 								</p>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="../mainblog.html" class="button">More</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
 								</ul>
 							</article>
 							<article>
 								<a href="#" class="image"
 									><img src="images/blog2.jpg" alt=""
 								/></a>
-								<h3>Web data analytics</h3>
+								<h3>Web data analytics description</h3>
 								<p>
 									this was done using python in data science regarding the
 									population growth count in the organisation
 								</p>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="../mainblog.html" class="button">More</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
 								</ul>
 							</article>
 							<article>
@@ -76,7 +99,9 @@
 									attract customers
 								</p>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="../mainblog.html" class="button">More</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
 								</ul>
 							</article>
 							<article>
@@ -86,23 +111,31 @@
 								<h3>Web data analytics</h3>
 								<p>
 									this was done using python in data science regarding the
-									population growth count in the organisation
+									population growth count in the organisationpopulation growth
+									count in the organisation population growth count in the
+									organisationgrowth count in the organisationpopulation growth
+									count in the organisationpopulation
 								</p>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="../mainblog.html" class="button">More</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
 								</ul>
 							</article>
 							<article>
 								<a href="#" class="image"
 									><img src="images/pic4.jpg" alt=""
 								/></a>
-								<h3>Fylo website</h3>
+								<h3>Fylo website compenents</h3>
 								<p>
 									fylo website that puts all your file in one secure location,
-									accessible anywhere.
+									accessible anywhere.population growth count in the
+									organisation
 								</p>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="../mainblog.html" class="button">More</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
 								</ul>
 							</article>
 							<article>
@@ -115,96 +148,103 @@
 									attract customers
 								</p>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="../mainblog.html" class="button">More</a></li>
+									<li><a href="#" class="button">Edit</a></li>
+									<li><a href="#" class="button">Delete</a></li>
 								</ul>
-							</article>
+							</article> -->
 						</div>
 					</section>
-					<h4 id="messages">List of messages</h4>
-					<div class="table-wrapper">
-						<table>
-							<thead>
-								<tr>
-									<th>Names</th>
-									<th>Descriptions</th>
-									<th>Emails</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Mugabo</td>
-									<td>the message description will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Brian</td>
-									<td>the message description will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Kenneth</td>
-									<td>the message description will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Muvara</td>
-									<td>the message description will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Bob</td>
-									<td>the message description will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					<section id="messages">
+						<h4>List of messages</h4>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Names</th>
+										<th>Descriptions</th>
+										<th>Emails</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Mugabo</td>
+										<td>the message description will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Brian</td>
+										<td>the message description will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Kenneth</td>
+										<td>the message description will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Muvara</td>
+										<td>the message description will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Bob</td>
+										<td>the message description will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
 					<!--coments-->
-					<h4 id="comments">List of all the comments</h4>
-					<div class="table-wrapper">
-						<table>
-							<thead>
-								<tr>
-									<th>Names</th>
-									<th>phone number</th>
-									<th>Comments</th>
-									<th>Emails</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Mugabo</td>
-									<td>0781486641</td>
-									<td>the message description will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Brian</td>
-									<td>0781486641</td>
-									<td>the comment content will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Kenneth</td>
-									<td>0781486641</td>
-									<td>the comment content will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Muvara</td>
-									<td>0781486641</td>
-									<td>the comment content will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-								<tr>
-									<td>Bob</td>
-									<td>0781486641</td>
-									<td>the comment content will go here</td>
-									<td>mudakikwaaimable05@gmail.com</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					<section id="comments">
+						<h4>List of all the comments</h4>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Names</th>
+										<th>phone number</th>
+										<th>Comments</th>
+										<th>Emails</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Mugabo</td>
+										<td>0781486641</td>
+										<td>the message description will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Brian</td>
+										<td>0781486641</td>
+										<td>the comment content will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Kenneth</td>
+										<td>0781486641</td>
+										<td>the comment content will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Muvara</td>
+										<td>0781486641</td>
+										<td>the comment content will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Bob</td>
+										<td>0781486641</td>
+										<td>the comment content will go here</td>
+										<td>mudakikwaaimable05@gmail.com</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+					<!-- add article form-->
 					<div id="bottomArticle" class="everything bodyarticle">
 						<div class="addArticleForm medium" style="display: none">
 							<header>
@@ -288,9 +328,15 @@
 						<ul>
 							<li><a href="index.html">Homepage</a></li>
 							<li><a href="../mainblog.html">Blog</a></li>
-							<li><a href="#messages">messages</a></li>
-							<li><a href="#comments">Comments</a></li>
-							<li><a href="#articles">Articles</a></li>
+							<li onclick="return showMessages()">
+								<a href="#messages">messages</a>
+							</li>
+							<li onclick="return showComments()">
+								<a href="#comments">Comments</a>
+							</li>
+							<li onclick="return showArticles()">
+								<a href="#articles">Articles</a>
+							</li>
 							<li>
 								<a
 									href="#bottomArticle"
@@ -308,6 +354,7 @@
 
 		<!-- Scripts -->
 		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 		<script src="assets/js/validations.js"></script>
 		<script src="assets/js/jquery.min.js"></script>

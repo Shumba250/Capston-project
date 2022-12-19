@@ -12,6 +12,34 @@ firebase.initializeApp(firebaseConfig);
 
 // reference the database
 var contactFormDB = firebase.database().ref("AddArticle");
+// retrieve data from firebase
+// var addArticleDatabase = firebase.database().ref("AddArticle");
+// addArticleDatabase.once("value", function (snapshot) {
+// 	var data = snapshot.val();
+// 	for (let i in data) {
+// 		console.log(data[i]);
+// 	}
+// });
+
+function showAllDatabase() {
+	const blogs = JSON.parse(localStorage.getItem("articles"));
+	blogs.forEach((element) => {
+		const article = document.createElement("article");
+		article.innerHTML = `<a href="#" class="image"
+	><img src=${element.image} alt=""
+/></a>
+<h3>${element.title}</h3>
+<p>
+	${element.description}
+</p>
+<ul class="actions">
+	<li><a href="../mainblog.html" class="button">More</a></li>
+	<li><a href="#" class="button">Edit</a></li>
+	<li><a href="#" class="button">Delete</a></li>
+</ul>`;
+		document.getElementById("addedArticle").append(article);
+	});
+}
 
 function addArticle() {
 	document
@@ -19,27 +47,19 @@ function addArticle() {
 		.addEventListener("click", function () {
 			let nameValue = document.querySelector("#name").value;
 			let description = document.getElementById("description").value;
+			let image = document.getElementById("image").value;
 			// console.log(`Title: ${nameValue}`);
 			let descriptionValue = editor.getData();
 			// console.log(`Description: ${descriptionValue}`);
 			let titleValueError = document.getElementById("titleValueError");
-			let titleValueMinError = document.getElementById("titleValueMinError");
 			let editorValueError = document.getElementById("editorValueError");
 			let editorValueMinError = document.getElementById("editorValueMinError");
 			let uploadFileError = document.getElementById("uploadFileError");
-			let image = document.getElementById("image").value;
 
 			if (nameValue === "") {
 				titleValueError.style.display = "block";
 				setTimeout(() => {
 					titleValueError.style.display = "none";
-				}, 5000);
-				return false;
-			}
-			if (nameValue.length < 20) {
-				titleValueMinError.style.display = "block";
-				setTimeout(() => {
-					titleValueMinError.style.display = "none";
 				}, 5000);
 				return false;
 			}
@@ -50,21 +70,40 @@ function addArticle() {
 				}, 5000);
 			}
 			if (description.length < 20) {
-				editorValueError.style.display = "block";
+				editorValueMinError.style.display = "block";
 				setTimeout(() => {
-					editorValueError.style.display = "none";
+					editorValueMinError.style.display = "none";
 				}, 5000);
 			}
-			saveArticleMessage(nameValue, description);
+			const blogs = JSON.parse(localStorage.getItem("articles"));
+			const newBlog = {};
+			newBlog["id"] = Date.toString();
+			newBlog["title"] = nameValue;
+			newBlog["description"] = descriptionValue;
+			newBlog["likes"] = 0;
+			newBlog["comments"] = [];
+			const img = document.getElementById("image");
+			const reader = new FileReader();
+			reader.addEventListener("load", () => {
+				newBlog["image"] = reader.result;
+				blogs.push(newBlog);
+				localStorage.setItem("articles", JSON.stringify(blogs));
+			});
+			reader.readAsDataURL(img.files[0]);
+
+			location.reload();
+
+			// saveArticleMessage(nameValue, description, image);
 		});
 }
-const saveArticleMessage = (nameValue, description) => {
-	var newArticleContactForm = contactFormDB.push();
-	newArticleContactForm.set({
-		title: nameValue,
-		description: description,
-	});
-};
+// const saveArticleMessage = (nameValue, description, image) => {
+// 	var newArticleContactForm = contactFormDB.push();
+// 	newArticleContactForm.set({
+// 		title: nameValue,
+// 		description: description,
+// 		image: image,
+// 	});
+// };
 addArticle();
 
 function hideForm() {
@@ -73,4 +112,15 @@ function hideForm() {
 
 function displayAddArticleForm() {
 	document.querySelector(".addArticleForm").style.display = "block";
+}
+
+function showArticles() {
+	document.querySelector("#articles").style.display = "block";
+}
+
+function showMessages() {
+	document.querySelector("#messages").style.display = "block";
+}
+function showComments() {
+	document.querySelector("#comments").style.display = "block";
 }
