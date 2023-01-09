@@ -10,7 +10,10 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="icon" href="images/icon.png" />
 	</head>
-	<body onload="showAllDatabase()" class="is-preload">
+	<body
+		onload="displayComments();displayMessages();showAllDatabase(); showEditArticle();showEditFirebaseArticle();"
+		class="is-preload"
+	>
 		<!-- Wrapper -->
 		<div id="wrapper">
 			<!-- Main -->
@@ -162,36 +165,43 @@
 								<thead>
 									<tr>
 										<th>Names</th>
+										<th>Subject</th>
 										<th>Descriptions</th>
 										<th>Emails</th>
+										<th>Delete</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="tbodyMessage">
+									<!-- <tr>
 										<td>Mugabo</td>
+										<td>this is it</td>
 										<td>the message description will go here</td>
 										<td>mudakikwaaimable05@gmail.com</td>
 									</tr>
 									<tr>
 										<td>Brian</td>
+										<td>this is it</td>
 										<td>the message description will go here</td>
 										<td>mudakikwaaimable05@gmail.com</td>
 									</tr>
 									<tr>
 										<td>Kenneth</td>
+										<td>this is it</td>
 										<td>the message description will go here</td>
 										<td>mudakikwaaimable05@gmail.com</td>
 									</tr>
 									<tr>
 										<td>Muvara</td>
+										<td>this is it</td>
 										<td>the message description will go here</td>
 										<td>mudakikwaaimable05@gmail.com</td>
 									</tr>
 									<tr>
 										<td>Bob</td>
+										<td>this is it</td>
 										<td>the message description will go here</td>
 										<td>mudakikwaaimable05@gmail.com</td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -203,14 +213,15 @@
 							<table>
 								<thead>
 									<tr>
+										<!-- <th>Time</th> -->
 										<th>Names</th>
-										<th>phone number</th>
+										<th>Email</th>
 										<th>Comments</th>
-										<th>Emails</th>
+										<th>Delete</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="tbodycomment">
+									<!-- <tr>
 										<td>Mugabo</td>
 										<td>0781486641</td>
 										<td>the message description will go here</td>
@@ -239,7 +250,7 @@
 										<td>0781486641</td>
 										<td>the comment content will go here</td>
 										<td>mudakikwaaimable05@gmail.com</td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -250,6 +261,7 @@
 							<header>
 								<h2>Add Article Form</h2>
 							</header>
+							<div class="alert">Article Added Successfully</div>
 							<form onsubmit="return false">
 								<div class="addArticleForm">
 									<div class="nameplaceholder">
@@ -274,9 +286,9 @@
 										<small id="editorValueError" class="errorMessages"
 											>Please this field can not be empty!</small
 										>
-										<small id="editorValueMinError" class="errorMessages"
+										<!-- <small id="editorValueMinError" class="errorMessages"
 											>Blog description should be at least 20 characters!</small
-										>
+										> -->
 									</div>
 									<div class="descriptionplaceholder">
 										<input
@@ -296,7 +308,7 @@
 													id="addArticleButton"
 													class="add"
 													type="submit"
-													value="Add article"
+													value="Add Article"
 												/>
 											</li>
 											<li>
@@ -314,6 +326,58 @@
 							</form>
 						</div>
 					</div>
+					<!--edit article form-->
+					<form onsubmit="return false" id="commentForm" action="#">
+						<h3>Edit Form</h3>
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall">
+								<input
+									type="text"
+									name="demoName"
+									id="demoName"
+									value=""
+									placeholder="Tittle"
+								/>
+								<small id="demoNameText" class="errorMessages"
+									>this field can't be empty</small
+								>
+							</div>
+							<div class="col-12">
+								<textarea
+									name="demoMessage"
+									id="demoMessage"
+									placeholder="Enter your comment here"
+									rows="6"
+								></textarea>
+								<small id="demoMessageText" class="errorMessages"
+									>this can't be empty</small
+								>
+							</div>
+							<div class="descriptionplaceholder">
+								<input
+									style="width: 100%; height: 40px"
+									type="file"
+									id="image1"
+									name="image"
+								/>
+								<!-- <small id="uploadFileError" class="errorMessages"
+									>Please uplaod the image</small
+								> -->
+							</div>
+							<div class="col-12">
+								<ul class="actions">
+									<li>
+										<button id="updateButton" type="submit" class="primary">
+											update
+										</button>
+									</li>
+									<li>
+										<input type="reset" value="Reset" />
+									</li>
+								</ul>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 
@@ -355,6 +419,7 @@
 		<!-- Scripts -->
 		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 		<script src="assets/js/validations.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
@@ -362,12 +427,27 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="./displayMessages.js"></script>
+		<script src="./displayComments.js"></script>
+		<script src="./firebaseAddArticle.js"></script>
+		<script src="./editFirebaseArticle.js"></script>
+		<script src="../assets/js/validation.js"></script>
 		<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
 		<script>
 			let editor;
 			ClassicEditor.create(document.querySelector("#description"))
 				.then((newEditor) => {
 					editor = newEditor;
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		</script>
+		<script>
+			let editor1;
+			ClassicEditor.create(document.querySelector("#demoMessage"))
+				.then((newEditor1) => {
+					editor1 = newEditor1;
 				})
 				.catch((error) => {
 					console.error(error);
