@@ -42,7 +42,7 @@
 							id="submitData"
 							type="submit"
 						>
-							<a href="./dashboard/index.html"><label>login</label></a>
+							<label>login</label>
 						</button>
 					</div>
 					<p>
@@ -116,7 +116,6 @@
 					.then((userCredential) => {
 						// Signed in
 						const user = userCredential.user;
-						window.location.href = "./dashboard/index.html";
 						// ...
 						let lgdate = new Date();
 						update(ref(database, "users/" + user.uid), {
@@ -125,6 +124,7 @@
 							.then(() => {
 								// Data saved successfully!
 								alert("login success");
+								window.location.href = "./dashboard/index.html";
 							})
 							.catch((error) => {
 								// The write failed...

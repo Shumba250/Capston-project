@@ -148,30 +148,30 @@ function loginFormValidation() {
 		}, 5000);
 		return false;
 	}
-	if (admin.email !== idloginFormEmail || admin.password !== Password) {
-		document.getElementById("loginError").style.display = "block";
-		setTimeout(() => {
-			document.getElementById("loginError").style.display = "none";
-		}, 3000);
-		return false;
-	}
-	auth
-		.signInWithEmailAndPassword(idloginFormEmail, Password)
-		.then(function () {
-			var user = auth.currentUser;
-			var database_ref = database.ref();
-			//create user data
-			var userData = {
-				email: idloginFormEmail,
-				password: Password,
-				last_login: Date.now(),
-			};
-			database_ref.child(`users/` + user.uid).update(userData);
-		})
-		.catch(function (error) {
-			var error_code = error.code;
-			var error_message = error.message;
-		});
+	// if (admin.email !== idloginFormEmail || admin.password !== Password) {
+	// 	document.getElementById("loginError").style.display = "block";
+	// 	setTimeout(() => {
+	// 		document.getElementById("loginError").style.display = "none";
+	// 	}, 3000);
+	// 	return false;
+	// }
+	// auth
+	// 	.signInWithEmailAndPassword(idloginFormEmail, Password)
+	// 	.then(function () {
+	// 		var user = auth.currentUser;
+	// 		var database_ref = database.ref();
+	// 		//create user data
+	// 		var userData = {
+	// 			email: idloginFormEmail,
+	// 			password: Password,
+	// 			last_login: Date.now(),
+	// 		};
+	// 		database_ref.child(`users/` + user.uid).update(userData);
+	// 	})
+	// 	.catch(function (error) {
+	// 		var error_code = error.code;
+	// 		var error_message = error.message;
+	// 	});
 }
 
 // comment validation
