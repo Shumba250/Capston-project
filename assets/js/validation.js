@@ -11,13 +11,17 @@ const firebaseConfig = {
 	messagingSenderId: "484040147864",
 	appId: "1:484040147864:web:7586cb329bf14a753761ed",
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+// initialize variables
+const auth = firebase.auth();
+const database = firebase.database();
 // reference the database
 var contactFormDB = firebase.database().ref("contactForm");
-var contactFormDBS = firebase.database().ref("loginForm");
+// var contactFormDBS = firebase.database().ref("loginForm");
 var contactFormDBS = firebase.database().ref("commentForm");
+
 //contact form validation
 function formValidation() {
 	let name = document.getElementById("name").value;
@@ -80,7 +84,27 @@ function formValidation() {
 			alert.style.display = "none";
 		}, 3000);
 	}
+	//contact saving in firebase
+
+	//contact saving in local storage
+	// const contactMessage = JSON.parse(localStorage.getItem("contacts"));
+	// const newMessage = {};
+	// newMessage["id"] = Date.now().toString();
+	// newMessage["name"] = name;
+	// newMessage["email"] = email;
+	// newMessage["subject"] = subject;
+	// newMessage["time"] =
+	// 	new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
+	// newMessage["message"] = message;
+	// contactMessage.push(newMessage);
+	// localStorage.setItem("contacts", JSON.stringify(contactMessage));
+	document.getElementById("contactForm").reset();
+	//contact saving in firease
 	saveMessage(name, email, subject, message);
+	document.querySelector(".alert").style.display = "block";
+	setTimeout(() => {
+		document.querySelector(".alert").style.display = "none";
+	}, 3000);
 }
 
 const saveMessage = (name, email, subject, message) => {
@@ -91,18 +115,18 @@ const saveMessage = (name, email, subject, message) => {
 		subject: subject,
 		message: message,
 	});
-
-	document.getElementById("contactForm").reset();
 };
+
 //login validation
 
 function loginFormValidation() {
 	let idloginFormEmail = document.getElementById("idloginFormEmail").value;
+	let Password = document.getElementById("Password").value;
 	let loginFormEmail1 = document.getElementById("loginFormEmail1");
 	let loginFormEmail = document.getElementById("loginFormEmail");
 	let validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	let Password = document.getElementById("Password").value;
 	let loginFormPassword = document.getElementById("loginFormPassword");
+	const admin = localStorage.getItem("Admin");
 	if (idloginFormEmail === "") {
 		loginFormEmail1.style.display = "block";
 		setTimeout(() => {
@@ -124,14 +148,38 @@ function loginFormValidation() {
 		}, 5000);
 		return false;
 	}
+	if (admin.email !== idloginFormEmail || admin.password !== Password) {
+		document.getElementById("loginError").style.display = "block";
+		setTimeout(() => {
+			document.getElementById("loginError").style.display = "none";
+		}, 3000);
+		return false;
+	}
+	auth
+		.signInWithEmailAndPassword(idloginFormEmail, Password)
+		.then(function () {
+			var user = auth.currentUser;
+			var database_ref = database.ref();
+			//create user data
+			var userData = {
+				email: idloginFormEmail,
+				password: Password,
+				last_login: Date.now(),
+			};
+			database_ref.child(`users/` + user.uid).update(userData);
+		})
+		.catch(function (error) {
+			var error_code = error.code;
+			var error_message = error.message;
+		});
 }
 
 // comment validation
 
 function commentSubmit() {
-	let demoName = document.getElementById("demoName").value;
-	let demoEmail = document.getElementById("demoEmail").value;
-	let demoMessage = document.getElementById("demoMessage").value;
+	let demoName = document.getElementById("commentName").value;
+	let demoEmail = document.getElementById("commentEmail").value;
+	let demoMessage = document.getElementById("commentMessage").value;
 	let demoNameText = document.getElementById("demoNameText");
 	let demoEmailText = document.getElementById("demoEmailText");
 	let demoMessageText2 = document.getElementById("demoMessageText2");
@@ -180,9 +228,9 @@ function commentSubmit() {
 const saveCommentMessage = (demoName, demoEmail, demoMessage) => {
 	var newCommentContactForm = contactFormDBS.push();
 	newCommentContactForm.set({
-		Name: demoName,
-		Email: demoEmail,
-		Message: demoMessage,
+		name: demoName,
+		email: demoEmail,
+		comment: demoMessage,
 	});
 };
 

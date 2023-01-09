@@ -72,6 +72,20 @@ textarea {
 /* .inner #banner {
 	display: none;
 } */
+.alert {
+	text-align: center;
+	padding: 10px;
+	background: #755139;
+	color: white;
+	margin-bottom: 10px;
+	display: none;
+}
+.table-wrapper .deleteComment {
+	cursor: pointer;
+}
+#commentForm {
+	display: none;
+}
 .inner #articles {
 	display: none;
 }
@@ -605,6 +619,13 @@ hr.major {
 section.special,
 article.special {
 	text-align: center;
+	margin-bottom: 3em;
+}
+section > :last-child,
+article > :last-child,
+section:last-child,
+article:last-child {
+	margin-bottom: 0;
 }
 
 header p {
