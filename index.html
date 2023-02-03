@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="icon" href="images/icon.png" />
 	</head>
-	<body class="is-preload">
+	<body class="is-preload" onload="blogSummary(), mainBlog()">
 		<!-- Top Navigation bar -->
 		<nav id="nav">
 			<ul class="container nav-ul-container">
@@ -22,6 +22,7 @@
 				<li><a href="#contact">CONTACT ME</a></li>
 				<li><a href="#blog">BLOG</a></li>
 				<li id="home-login"><a href="login.html">LOG IN</a></li>
+				<li id="home-login"><a href="signup.html">SIGNUP</a></li>
 			</ul>
 		</nav>
 		<!-- Home page html-->
@@ -223,25 +224,11 @@
 				<header>
 					<h2>Recent blog Articles</h2>
 				</header>
-				<div class="row">
-					<div class="col-4 col-6-medium col-12-small">
-						<article class="box style2">
-							<a href="#" class="image featured"
-								><img src="images/blog1.jpg" alt=""
-							/></a>
-							<h3>
-								<a href="mainblog.html" target="_blank"
-									>mobile apps and development</a
-								>
-							</h3>
-							<p>
-								fylo website that puts all your file in one secure location,
-								accessible anywhere.
-							</p>
-							<h4><a href="mainblog.html" target="_blank">Read more</a></h4>
-						</article>
-					</div>
-					<div class="col-4 col-6-medium col-12-small">
+				<div id="summaryBlogs" class="row">
+					<!-- <div class="col-4 col-6-medium col-12-small">
+					
+					</div> -->
+					<!-- <div class="col-4 col-6-medium col-12-small">
 						<article class="box style2">
 							<a href="#" class="image featured"
 								><img src="images/blog2.jpg" alt=""
@@ -268,7 +255,7 @@
 							</p>
 							<h4><a href="mainblog.html" target="_blank">Read more</a></h4>
 						</article>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</article>
@@ -406,6 +393,9 @@
 
 		<!-- this will help to assess javaScript files -->
 		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+		-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 		<script src="assets/js/validation.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
@@ -414,5 +404,6 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+		<script src="./displayBlogs.js"></script>
 	</body>
 </html>

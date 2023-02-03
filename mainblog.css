@@ -34,10 +34,69 @@ input::-moz-focus-inner {
 #commentForm {
 	display: none;
 }
+.commentlikesdiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.icons,
+.comm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.icons {
+	color: red;
+}
+.comm {
+	color: blue;
+}
 .error {
 	color: red;
 	float: right;
 	display: none;
+}
+.alert {
+	text-align: center;
+	padding: 10px;
+	background: #755139;
+	color: white;
+	margin-bottom: 10px;
+	display: none;
+}
+.mainDiv {
+	width: min(50%, 1140px);
+	margin: 3rem auto;
+}
+
+.cardDiv {
+	padding: 15px;
+	background-color: white;
+	border: 1px solid;
+	border-color: #f56a6a;
+	border-radius: 0.5rem;
+	min-width: 100%;
+}
+
+.cardDiv h3,
+h5,
+.cardDiv p {
+	margin-bottom: 1rem;
+}
+
+.cardButtons {
+	display: flex;
+	font-size: 0.85rem;
+	gap: 30px;
+	justify-content: flex-end;
+	align-items: center;
+}
+.mainDiv .cardButtons .buttons {
+	color: #f56a6a;
+	cursor: pointer;
+}
+#email {
+	opacity: 0.6;
 }
 /* Basic */
 @-ms-viewport {
@@ -123,7 +182,7 @@ body.is-resizing *:after {
 .image.main {
 	display: block;
 	margin: 0 0 3em 0;
-	width: 100%;
+	width: 50%;
 }
 .image.main img {
 	width: 100%;
