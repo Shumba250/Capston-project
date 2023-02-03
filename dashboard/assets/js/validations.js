@@ -55,6 +55,7 @@
 // }
 
 //function to edit blog articles in firebase
+
 async function showEditFirebaseArticle(key) {
 	const token = localStorage.getItem("userAccess");
 	await fetch(`https://long-gold-llama-suit.cyclic.app/blogs/${key}`, {
@@ -97,6 +98,7 @@ async function showEditFirebaseArticle(key) {
 					location.reload();
 				});
 		}
+
 	});
 }
 
@@ -105,6 +107,7 @@ const updateFirebaseArticle = (key, demoName, descriptionValue, image) => {
 		title: demoName,
 		description: descriptionValue,
 		image: image,
+
 	});
 };
 
@@ -150,6 +153,7 @@ async function deleteFirebaseMessages(key) {
 			alert("server error");
 		}
 	});
+
 	location.reload;
 }
 
@@ -180,6 +184,7 @@ async function addArticle() {
 		.addEventListener("click", function () {
 			let nameValue = document.querySelector("#name").value;
 			// let description = document.getElementById("description").value;
+
 			let image = document.getElementById("image").files[0];
 			// console.log(`Title: ${nameValue}`);
 			let descriptionValue = editor.getData();

@@ -1,6 +1,7 @@
 // // TODO: Add SDKs for Firebase products that you want to use
 // // https://firebase.google.com/docs/web/setup#available-libraries
 
+
 // // Your web app's Firebase configuration
 // const firebaseConfig = {
 // 	apiKey: "AIzaSyDOBHqEu_FX5cwR-P79SUHPrl85Eu2R91g",
@@ -21,6 +22,7 @@
 // var contactFormDB = firebase.database().ref("contactForm");
 // // var contactFormDBS = firebase.database().ref("loginForm");
 // var contactFormDBS = firebase.database().ref("commentForm");
+
 
 //contact form validation
 async function formValidation() {
@@ -84,6 +86,7 @@ async function formValidation() {
 			alert.style.display = "none";
 		}, 3000);
 	}
+
 	//send a message to the database
 	await fetch("https://long-gold-llama-suit.cyclic.app/contactMessages", {
 		method: "POST",
@@ -107,6 +110,7 @@ async function formValidation() {
 		}
 	});
 	document.getElementById("contactForm").reset();
+
 	//contact saving in local storage
 	// const contactMessage = JSON.parse(localStorage.getItem("contacts"));
 	// const newMessage = {};
@@ -119,6 +123,7 @@ async function formValidation() {
 	// newMessage["message"] = message;
 	// contactMessage.push(newMessage);
 	// localStorage.setItem("contacts", JSON.stringify(contactMessage));
+
 	//contact saving in firease
 	// saveMessage(name, email, subject, message);
 }
@@ -142,6 +147,7 @@ async function loginFormValidation() {
 	let loginFormEmail = document.getElementById("loginFormEmail");
 	let validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	let loginFormPassword = document.getElementById("loginFormPassword");
+
 	// const admin = localStorage.getItem("Admin");
 	if (idloginFormEmail === "") {
 		loginFormEmail1.style.display = "block";
@@ -171,6 +177,7 @@ async function loginFormValidation() {
 	// 	}, 3000);
 	// 	return false;
 	// }
+
 	fetch("https://long-gold-llama-suit.cyclic.app/login", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -199,6 +206,7 @@ async function loginFormValidation() {
 			}
 		})
 		.catch((err) => console.log(err));
+
 	// auth
 	// 	.signInWithEmailAndPassword(idloginFormEmail, Password)
 	// 	.then(function () {

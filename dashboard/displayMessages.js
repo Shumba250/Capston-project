@@ -44,5 +44,6 @@ async function displayMessages() {
 		} else {
 			alert("server error");
 		}
+
 	});
 }

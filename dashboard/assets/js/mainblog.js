@@ -27,6 +27,7 @@ async function mainBlog() {
                     <p onclick="return displayCommentForm()" id="comment">
                         <strong>Click here to leave a comment</strong>
                     </p>
+
                     <!-- Form -->
                     <form onsubmit="return false" id="commentForm" action="#">
                         <h3>Comment Form</h3>
@@ -68,6 +69,7 @@ async function mainBlog() {
                             </div>
                         </div>
                     </form>`;
+
 			document.getElementById("innerSection").append(blogsSection);
 
 			const blogComments = data.comments;
