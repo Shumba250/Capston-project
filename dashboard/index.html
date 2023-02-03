@@ -11,7 +11,9 @@
 		<link rel="icon" href="images/icon.png" />
 	</head>
 	<body
-		onload="displayComments();displayMessages();showAllDatabase(); showEditArticle();showEditFirebaseArticle();"
+
+		onload="displayMessages();showAllDatabase();"
+
 		class="is-preload"
 	>
 		<!-- Wrapper -->
@@ -417,10 +419,6 @@
 		</div>
 
 		<!-- Scripts -->
-		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 		<script src="assets/js/validations.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
@@ -430,7 +428,6 @@
 		<script src="./displayMessages.js"></script>
 		<script src="./displayComments.js"></script>
 		<script src="./firebaseAddArticle.js"></script>
-		<script src="./editFirebaseArticle.js"></script>
 		<script src="../assets/js/validation.js"></script>
 		<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
 		<script>

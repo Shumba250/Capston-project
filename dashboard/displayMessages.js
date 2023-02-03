@@ -15,21 +15,35 @@
 
 //retireve data from firebase
 
-function displayMessages() {
-	var retrieveContactForm = firebase.database().ref("contactForm");
-	retrieveContactForm.once("value", function (snapshot) {
-		snapshot.forEach((childSnapshot) => {
-			const key = childSnapshot.key;
-			const data = childSnapshot.val();
-			let textMessage = document.createElement("tr");
-			textMessage.innerHTML = `<tr>
-			<td>${data.name}</td>
-			<td>${data.subject}</td>
-			<td>${data.message}</td>
-			<td>${data.email}</td>
-			<td onclick="return deleteFirebaseMessages('${key}')" class="deleteComment" type="button">delete</td>
+async function displayMessages() {
+	const token = localStorage.getItem("userAccess");
+	await fetch("https://long-gold-llama-suit.cyclic.app/contactMessages", {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	}).then(async (res) => {
+		if (res.status === 200) {
+			const body = await res.json();
+			const contactMessage = body.data.messages;
+			contactMessage.forEach(async (msg) => {
+				let textMessage = document.createElement("tr");
+				textMessage.innerHTML = `<tr>
+			<td>${msg.name}</td>
+			<td>${msg.subject}</td>
+			<td>${msg.message}</td>
+			<td>${msg.email}</td>
+			<td onclick="return deleteFirebaseMessages('${msg._id}')" class="deleteComment" type="button">delete</td>
 		</tr>`;
-			document.getElementById("tbodyMessage").append(textMessage);
-		});
+				document.getElementById("tbodyMessage").append(textMessage);
+			});
+		} else if (res.status === 400) {
+			alert("error");
+		} else if (res.status === 401) {
+			alert("unathorized");
+		} else {
+			alert("server error");
+		}
+
 	});
 }

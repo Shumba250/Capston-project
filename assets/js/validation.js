@@ -1,29 +1,31 @@
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-	apiKey: "AIzaSyDOBHqEu_FX5cwR-P79SUHPrl85Eu2R91g",
-	authDomain: "contact-form-e2058.firebaseapp.com",
-	databaseURL: "https://contact-form-e2058-default-rtdb.firebaseio.com",
-	projectId: "contact-form-e2058",
-	storageBucket: "contact-form-e2058.appspot.com",
-	messagingSenderId: "484040147864",
-	appId: "1:484040147864:web:7586cb329bf14a753761ed",
-};
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// initialize variables
-const auth = firebase.auth();
-const database = firebase.database();
-// reference the database
-var contactFormDB = firebase.database().ref("contactForm");
-// var contactFormDBS = firebase.database().ref("loginForm");
-var contactFormDBS = firebase.database().ref("commentForm");
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+// 	apiKey: "AIzaSyDOBHqEu_FX5cwR-P79SUHPrl85Eu2R91g",
+// 	authDomain: "contact-form-e2058.firebaseapp.com",
+// 	databaseURL: "https://contact-form-e2058-default-rtdb.firebaseio.com",
+// 	projectId: "contact-form-e2058",
+// 	storageBucket: "contact-form-e2058.appspot.com",
+// 	messagingSenderId: "484040147864",
+// 	appId: "1:484040147864:web:7586cb329bf14a753761ed",
+// };
+
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// // initialize variables
+// const auth = firebase.auth();
+// const database = firebase.database();
+// // reference the database
+// var contactFormDB = firebase.database().ref("contactForm");
+// // var contactFormDBS = firebase.database().ref("loginForm");
+// var contactFormDBS = firebase.database().ref("commentForm");
+
 
 //contact form validation
-function formValidation() {
+async function formValidation() {
 	let name = document.getElementById("name").value;
 	let email = document.getElementById("email").value;
 	let subject = document.getElementById("subject").value;
@@ -84,7 +86,30 @@ function formValidation() {
 			alert.style.display = "none";
 		}, 3000);
 	}
-	//contact saving in firebase
+
+	//send a message to the database
+	await fetch("https://long-gold-llama-suit.cyclic.app/contactMessages", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			name: name,
+			email: email,
+			subject: subject,
+			message: message,
+		}),
+	}).then(async (res) => {
+		if (res.status === 200) {
+			document.querySelector(".alert").style.display = "block";
+			setTimeout(() => {
+				document.querySelector(".alert").style.display = "none";
+			}, 3000);
+		} else if (res.status === 400) {
+			alert("error");
+		} else {
+			alert("server error");
+		}
+	});
+	document.getElementById("contactForm").reset();
 
 	//contact saving in local storage
 	// const contactMessage = JSON.parse(localStorage.getItem("contacts"));
@@ -98,35 +123,32 @@ function formValidation() {
 	// newMessage["message"] = message;
 	// contactMessage.push(newMessage);
 	// localStorage.setItem("contacts", JSON.stringify(contactMessage));
-	document.getElementById("contactForm").reset();
+
 	//contact saving in firease
-	saveMessage(name, email, subject, message);
-	document.querySelector(".alert").style.display = "block";
-	setTimeout(() => {
-		document.querySelector(".alert").style.display = "none";
-	}, 3000);
+	// saveMessage(name, email, subject, message);
 }
 
-const saveMessage = (name, email, subject, message) => {
-	var newContactForm = contactFormDB.push();
-	newContactForm.set({
-		name: name,
-		email: email,
-		subject: subject,
-		message: message,
-	});
-};
+// const saveMessage = (name, email, subject, message) => {
+// 	var newContactForm = contactFormDB.push();
+// 	newContactForm.set({
+// 		name: name,
+// 		email: email,
+// 		subject: subject,
+// 		message: message,
+// 	});
+// };
 
 //login validation
 
-function loginFormValidation() {
+async function loginFormValidation() {
 	let idloginFormEmail = document.getElementById("idloginFormEmail").value;
 	let Password = document.getElementById("Password").value;
 	let loginFormEmail1 = document.getElementById("loginFormEmail1");
 	let loginFormEmail = document.getElementById("loginFormEmail");
 	let validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	let loginFormPassword = document.getElementById("loginFormPassword");
-	const admin = localStorage.getItem("Admin");
+
+	// const admin = localStorage.getItem("Admin");
 	if (idloginFormEmail === "") {
 		loginFormEmail1.style.display = "block";
 		setTimeout(() => {
@@ -155,6 +177,36 @@ function loginFormValidation() {
 	// 	}, 3000);
 	// 	return false;
 	// }
+
+	fetch("https://long-gold-llama-suit.cyclic.app/login", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ email: idloginFormEmail, password: Password }),
+	})
+		.then(async (response) => {
+			if (response.status === 200) {
+				const result = await response.json();
+				localStorage.setItem("userAccess", result.token);
+				const token = localStorage.getItem("userAccess");
+				await fetch("https://long-gold-llama-suit.cyclic.app/permission", {
+					headers: { Authorization: `Bearer ${token}` },
+				}).then((adminAccess) => {
+					if (adminAccess.status === 200) {
+						location.assign("./dashboard/index.html");
+					} else {
+						location.assign("index.html");
+					}
+				});
+			} else if (response.status === 400) {
+				alert("Bad request");
+			} else if (response.status === 401) {
+				alert("login failed!");
+			} else {
+				alert("something went wrong");
+			}
+		})
+		.catch((err) => console.log(err));
+
 	// auth
 	// 	.signInWithEmailAndPassword(idloginFormEmail, Password)
 	// 	.then(function () {
@@ -176,37 +228,11 @@ function loginFormValidation() {
 
 // comment validation
 
-function commentSubmit() {
-	let demoName = document.getElementById("commentName").value;
-	let demoEmail = document.getElementById("commentEmail").value;
+async function commentSubmit() {
 	let demoMessage = document.getElementById("commentMessage").value;
-	let demoNameText = document.getElementById("demoNameText");
-	let demoEmailText = document.getElementById("demoEmailText");
-	let demoMessageText2 = document.getElementById("demoMessageText2");
-	let validEmailComment = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	let demoMessageText = document.getElementById("demoMessageText");
 	let demoMessageText1 = document.getElementById("demoMessageText1");
-	if (demoName === "") {
-		demoNameText.style.display = "block";
-		setTimeout(() => {
-			demoNameText.style.display = "none";
-		}, 5000);
-		return false;
-	}
-	if (demoEmail === "") {
-		demoEmailText.style.display = "block";
-		setTimeout(() => {
-			demoEmailText.style.display = "none";
-		}, 5000);
-		return false;
-	}
-	if (!demoEmail.match(validEmailComment)) {
-		demoMessageText2.style.display = "block";
-		setTimeout(() => {
-			demoMessageText2.style.display = "none";
-		}, 5000);
-		return false;
-	}
+
 	if (demoMessage === "") {
 		demoMessageText.style.display = "block";
 		setTimeout(() => {
@@ -221,18 +247,61 @@ function commentSubmit() {
 		}, 5000);
 		return false;
 	}
-	saveCommentMessage(demoName, demoEmail, demoMessage);
+	let token = localStorage.getItem("userAccess");
+	let splittedURL = window.location.href.split("?").reverse();
+	let blogId = splittedURL[0];
+	await fetch(
+		`https://long-gold-llama-suit.cyclic.app/blogs/${blogId}/comments`,
+		{
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				comment: demoMessage,
+			}),
+		}
+	).then(async (res) => {
+		if (res.status === 200) {
+			alert("comment success");
+			const body = await res.json();
+			const datas = body.data.blog;
+			const blogComments = datas.comments;
+			blogComments.forEach(async (cmnt) => {
+				const userRes = await fetch(
+					`https://long-gold-llama-suit.cyclic.app/signups/${cmnt.userId}`
+				);
+				if (userRes.status === 200) {
+					const user = await userRes.json();
+					const commentDiv = document.createElement("div");
+					commentDiv.classList.add("singleComment");
+					commentDiv.innerHTML = `<i class="fa-solid fa-user fa-2x"></i><h4>${
+						user.data.user.firstName
+					}</h4><h5>${new Date(cmnt.createdAt).toLocaleString()}</h5><p>${
+						cmnt.comment
+					}</p>`;
+					document.querySelector("div.commentDiv").appendChild(commentDiv);
+				} else {
+					console.error("Failed to retrieve user information");
+				}
+			});
+		} else {
+			console.error("Failed to create comment");
+		}
+	});
+	// saveCommentMessage(demoName, demoEmail, demoMessage);
 	document.getElementById("commentForm").reset();
 }
 
-const saveCommentMessage = (demoName, demoEmail, demoMessage) => {
-	var newCommentContactForm = contactFormDBS.push();
-	newCommentContactForm.set({
-		name: demoName,
-		email: demoEmail,
-		comment: demoMessage,
-	});
-};
+// const saveCommentMessage = (demoName, demoEmail, demoMessage) => {
+// 	var newCommentContactForm = contactFormDBS.push();
+// 	newCommentContactForm.set({
+// 		name: demoName,
+// 		email: demoEmail,
+// 		comment: demoMessage,
+// 	});
+// };
 
 function displayCommentForm() {
 	document.querySelector("#commentForm").style.display = "block";

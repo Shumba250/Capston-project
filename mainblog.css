@@ -34,6 +34,23 @@ input::-moz-focus-inner {
 #commentForm {
 	display: none;
 }
+.commentlikesdiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.icons,
+.comm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.icons {
+	color: red;
+}
+.comm {
+	color: blue;
+}
 .error {
 	color: red;
 	float: right;
