@@ -1,3 +1,4 @@
+
 async function displayComments() {
 	const token = localStorage.getItem("userAccess");
 	await fetch(`http://localhost:3000/signups/${cmnt.userId}`, {

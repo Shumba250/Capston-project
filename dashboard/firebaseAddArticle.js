@@ -1,3 +1,4 @@
+
 // retrieve data from database
 async function showAllDatabase() {
 	const token = localStorage.getItem("userAccess");

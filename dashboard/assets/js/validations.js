@@ -99,6 +99,7 @@ async function showEditFirebaseArticle(id) {
 					location.reload();
 				});
 		}
+
 	});
 }
 
@@ -152,6 +153,7 @@ async function deleteFirebaseMessages(key) {
 			alert("server error");
 		}
 	});
+
 	location.reload;
 }
 
@@ -182,6 +184,7 @@ async function addArticle() {
 		.addEventListener("click", function () {
 			let nameValue = document.querySelector("#name").value;
 			// let description = document.getElementById("description").value;
+
 			let image = document.getElementById("image").files[0];
 			// console.log(`Title: ${nameValue}`);
 			let descriptionValue = editor.getData();
