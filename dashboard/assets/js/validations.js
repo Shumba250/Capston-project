@@ -55,9 +55,9 @@
 // }
 
 //function to edit blog articles in firebase
-async function showEditFirebaseArticle(key) {
+async function showEditFirebaseArticle(id) {
 	const token = localStorage.getItem("userAccess");
-	await fetch(`https://long-gold-llama-suit.cyclic.app/blogs/${key}`, {
+	await fetch(`https://long-gold-llama-suit.cyclic.app/blogs/${id}`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
@@ -79,9 +79,11 @@ async function showEditFirebaseArticle(key) {
 					formData.append("title", title);
 					formData.append("description", descriptionValue);
 					formData.append("image", image);
-					await fetch("https://long-gold-llama-suit.cyclic.app/blogs", {
+					await fetch(`https://long-gold-llama-suit.cyclic.app/blogs/${id}`, {
 						method: "PATCH",
-						headers: { Authorization: `Bearer ${token}` },
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
 						body: formData,
 					}).then(async (res) => {
 						if (res.status === 200) {
@@ -100,13 +102,13 @@ async function showEditFirebaseArticle(key) {
 	});
 }
 
-const updateFirebaseArticle = (key, demoName, descriptionValue, image) => {
-	firebase.database().ref(`/AddArticle/${key}`).update({
-		title: demoName,
-		description: descriptionValue,
-		image: image,
-	});
-};
+// const updateFirebaseArticle = (key, demoName, descriptionValue, image) => {
+// 	firebase.database().ref(`/AddArticle/${key}`).update({
+// 		title: demoName,
+// 		description: descriptionValue,
+// 		image: image,
+// 	});
+// };
 
 //function to delete blog articles from firebase
 async function deleteEditArticle(key) {
